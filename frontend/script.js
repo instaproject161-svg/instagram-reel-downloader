@@ -5,7 +5,7 @@ import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChang
 
 // ======================== CONFIGURATION =========================
 // Backend API URL - change to your Render backend url when deployed
-const BACKEND_API_URL = "https://your-backend.onrender.com"; // replace or use env
+const BACKEND_API_URL = "https://instagram-reel-downloader-cc6q.onrender.com"; // replace or use env
 // For local development: http://localhost:5000
 // For production: set to actual render URL
 
