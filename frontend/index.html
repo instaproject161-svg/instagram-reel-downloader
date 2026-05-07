@@ -1,4 +1,3 @@
-<!-- frontend/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +6,7 @@
     <title>InstaReel Downloader | Download Instagram Reels Free</title>
     <meta name="description" content="Download Instagram Reels in high quality. Free, fast and easy. No login required. Glassmorphism UI, mobile friendly.">
     <meta name="keywords" content="instagram reel downloader, insta reel saver, download ig reels, free reel downloader">
-    <meta name="author" content="InstaReel Downloader">
-    <meta name="robots" content="index, follow">
+    <meta name="author" content="YourName">
     <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238b5cf6'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 13c-2.33 0-4.31-1.46-5.11-3.5h10.22c-.8 2.04-2.78 3.5-5.11 3.5z'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +28,7 @@
                 <a href="#faq">FAQ</a>
             </div>
             <div class="auth-area" id="authArea">
-                <button id="googleSignInBtn" class="btn-outline-light"><i class="fab fa-google"></i> Sign in with Google</button>
+                <button id="googleSignInBtn" class="btn-outline-light"><i class="fab fa-google"></i> Sign in</button>
                 <div id="userProfile" style="display: none;">
                     <img id="userAvatar" src="" alt="avatar" class="avatar-small">
                     <span id="userName"></span>
@@ -41,7 +39,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with URL Input & Download -->
     <section id="hero" class="hero">
         <div class="hero-content">
             <h1>Download Instagram Reels <span class="gradient-text">Instantly</span></h1>
@@ -61,7 +59,7 @@
         </div>
     </section>
 
-    <!-- Loading & Result Section -->
+    <!-- Loading & Result Section (Video Preview + Download) -->
     <div class="result-area" id="resultArea">
         <div id="loadingIndicator" class="loading-container" style="display: none;">
             <div class="spinner"></div>
@@ -125,19 +123,23 @@
             <button class="faq-question">What quality do I get? <i class="fas fa-chevron-down"></i></button>
             <div class="faq-answer"><p>We download the best available quality up to 1080p.</p></div>
         </div>
+        <div class="faq-item">
+            <button class="faq-question">Can I download on mobile? <i class="fas fa-chevron-down"></i></button>
+            <div class="faq-answer"><p>Yes, works perfectly on iPhone, Android, and tablets.</p></div>
+        </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
         <p>&copy; 2025 InstaReel Down | Not affiliated with Instagram</p>
         <div class="footer-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></div>
+        <div class="footer-credit">Design by <span>YourName</span></div>
     </footer>
 
     <div id="toastContainer" class="toast-container"></div>
 
-    <!-- Firebase SDK (optional auth) -->
-    <script type="module">
-        // Firerence config placeholder - replace with your own
+    <!-- Firebase config placeholder (optional) -->
+    <script>
         window.FIREBASE_CONFIG = {
             apiKey: "YOUR_API_KEY",
             authDomain: "YOUR_AUTH_DOMAIN",
