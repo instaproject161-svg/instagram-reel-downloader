@@ -1,22 +1,19 @@
-// frontend/script.js
 // Firebase & UI Logic
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 // ======================== CONFIGURATION =========================
-// Backend API URL - change to your Render backend url when deployed
-const BACKEND_API_URL = "https://instagram-reel-downloader-cc6q.onrender.com"; // replace or use env
-// For local development: http://localhost:5000
-// For production: set to actual render URL
+// Backend API URL - IMPORTANT: Replace with your actual Render backend URL
+const BACKEND_API_URL = "https://instagram-reel-downloader-cc6q.onrender.com"; // <-- CHANGE THIS IF DIFFERENT
 
-// Initialize Firebase only if config exists
+// Initialize Firebase only if config exists (optional)
 let auth = null;
 let currentUser = null;
-if (window.FIREBASE_CONFIG && window.FIREBASE_CONFIG.apiKey !== "YOUR_API_KEY") {
+if (window.FIREBASE_CONFIG && window.FIREBASE_CONFIG.apiKey && window.FIREBASE_CONFIG.apiKey !== "YOUR_API_KEY") {
     const app = initializeApp(window.FIREBASE_CONFIG);
     auth = getAuth(app);
 } else {
-    console.warn("Firebase not configured properly. Auth disabled.");
+    console.warn("Firebase not configured. Auth disabled.");
 }
 
 // DOM Elements
@@ -76,7 +73,7 @@ function renderHistory() {
     historyListDiv.innerHTML = downloadHistory.map(item => `
         <div class="history-item" data-id="${item.id}">
             <div style="display:flex; gap:12px; align-items:center;">
-                <img src="${item.thumbnail}" style="width: 48px; height:48px; object-fit:cover; border-radius:8px;">
+                <img src="${item.thumbnail}" style="width: 48px; height:48px; object-fit:cover; border-radius:8px;" onerror="this.src='https://placehold.co/48x48?text=Reel'">
                 <div><strong>${escapeHtml(item.title.substring(0, 30))}</strong><br><small>${new Date(item.timestamp).toLocaleString()}</small></div>
             </div>
             <button class="btn-small-outline re-download-btn" data-id="${item.id}" data-url="${item.url}">Download Again</button>
@@ -110,7 +107,15 @@ function showToast(message, type = "success") {
     setTimeout(() => { toast.remove(); }, 3000);
 }
 
-function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+function escapeHtml(str) { 
+    if (!str) return '';
+    return str.replace(/[&<>]/g, function(m){
+        if(m==='&') return '&amp;'; 
+        if(m==='<') return '&lt;'; 
+        if(m==='>') return '&gt;'; 
+        return m;
+    }); 
+}
 
 // Copy URL button
 copyUrlBtn?.addEventListener('click', () => {
@@ -210,6 +215,7 @@ function updateUIBasedOnAuth(user) {
         userProfileDiv.style.display = "none";
     }
 }
+
 // FAQ accordion
 document.querySelectorAll('.faq-question').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -218,8 +224,8 @@ document.querySelectorAll('.faq-question').forEach(btn => {
         ans.style.display = ans.classList.contains('active') ? "block" : "none";
     });
 });
-loadHistory();
-// Mobile menu toggle (basic)
+
+// Mobile menu toggle
 const mobileToggle = document.getElementById('mobileMenuToggle');
 const navLinks = document.querySelector('.nav-links');
 if (mobileToggle) {
@@ -228,3 +234,6 @@ if (mobileToggle) {
         else navLinks.style.display = 'flex';
     });
 }
+
+// Initial load
+loadHistory();
