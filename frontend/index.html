@@ -1,0 +1,154 @@
+<!-- frontend/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>InstaReel Downloader | Download Instagram Reels Free</title>
+    <meta name="description" content="Download Instagram Reels in high quality. Free, fast and easy. No login required. Glassmorphism UI, mobile friendly.">
+    <meta name="keywords" content="instagram reel downloader, insta reel saver, download ig reels, free reel downloader">
+    <meta name="author" content="InstaReel Downloader">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238b5cf6'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 13c-2.33 0-4.31-1.46-5.11-3.5h10.22c-.8 2.04-2.78 3.5-5.11 3.5z'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Sticky Navbar -->
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fab fa-instagram"></i>
+                <span>Reel<span>Down</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="#hero">Home</a>
+                <a href="#how-it-works">How it works</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <div class="auth-area" id="authArea">
+                <button id="googleSignInBtn" class="btn-outline-light"><i class="fab fa-google"></i> Sign in with Google</button>
+                <div id="userProfile" style="display: none;">
+                    <img id="userAvatar" src="" alt="avatar" class="avatar-small">
+                    <span id="userName"></span>
+                    <button id="signOutBtn" class="btn-text">Sign out</button>
+                </div>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1>Download Instagram Reels <span class="gradient-text">Instantly</span></h1>
+            <p>Paste any Instagram Reel URL and download video in HD quality. Free, fast, no registration required.</p>
+            <div class="url-card glass-card">
+                <div class="input-group">
+                    <i class="fas fa-link"></i>
+                    <input type="text" id="reelUrl" placeholder="https://www.instagram.com/reel/..." value="">
+                    <button id="copyUrlBtn" class="btn-icon" title="Copy URL"><i class="fas fa-copy"></i></button>
+                </div>
+                <button id="downloadBtn" class="btn-primary btn-glow">Download Reel <i class="fas fa-download"></i></button>
+                <div class="info-text"><i class="fas fa-shield-alt"></i> No login required • High quality • Secure</div>
+            </div>
+            <div class="ad-placeholder-top">
+                <span>Advertisement Space</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loading & Result Section -->
+    <div class="result-area" id="resultArea">
+        <div id="loadingIndicator" class="loading-container" style="display: none;">
+            <div class="spinner"></div>
+            <p>Processing video... This might take a few seconds</p>
+            <div class="progress-status">Fetching from Instagram...</div>
+        </div>
+        <div id="resultCard" class="result-card glass-card" style="display: none;">
+            <div class="preview-header">
+                <h3><i class="fas fa-film"></i> Video Preview</h3>
+                <button id="closeResult" class="btn-icon"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="video-preview">
+                <img id="thumbnailImg" src="" alt="reel thumbnail" class="thumbnail">
+                <div class="video-info">
+                    <p id="videoTitle">Instagram Reel</p>
+                    <div class="action-buttons">
+                        <a id="downloadLink" class="btn-download" download>Download Video <i class="fas fa-download"></i></a>
+                        <button id="copyDownloadLinkBtn" class="btn-secondary">Copy Link <i class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Download History Section -->
+    <section class="history-section glass-card">
+        <div class="history-header">
+            <h3><i class="fas fa-history"></i> Recent Downloads</h3>
+            <button id="clearHistoryBtn" class="btn-small-outline">Clear All</button>
+        </div>
+        <div id="historyList" class="history-list">
+            <div class="empty-history">No downloads yet. Paste a reel URL above!</div>
+        </div>
+        <div class="ad-placeholder-small">
+            <span>Ad Space</span>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how-it-works" class="how-section">
+        <h2>How to Download Instagram Reel</h2>
+        <div class="steps-grid">
+            <div class="step-card"><i class="fas fa-copy"></i><h4>1. Copy URL</h4><p>Open Instagram, find the Reel, copy link from share menu.</p></div>
+            <div class="step-card"><i class="fas fa-paste"></i><h4>2. Paste Here</h4><p>Paste URL in the input field above.</p></div>
+            <div class="step-card"><i class="fas fa-download"></i><h4>3. Download</h4><p>Click Download and save video to your device.</p></div>
+        </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section id="faq" class="faq-section glass-card">
+        <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <button class="faq-question">Do I need to sign in? <i class="fas fa-chevron-down"></i></button>
+            <div class="faq-answer"><p>No, the tool works without any login. Google Sign In is optional for saving preferences.</p></div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">Is it free? <i class="fas fa-chevron-down"></i></button>
+            <div class="faq-answer"><p>Yes, 100% free. No hidden charges.</p></div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">What quality do I get? <i class="fas fa-chevron-down"></i></button>
+            <div class="faq-answer"><p>We download the best available quality up to 1080p.</p></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 InstaReel Down | Not affiliated with Instagram</p>
+        <div class="footer-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></div>
+    </footer>
+
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Firebase SDK (optional auth) -->
+    <script type="module">
+        // Firerence config placeholder - replace with your own
+        window.FIREBASE_CONFIG = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+    </script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
